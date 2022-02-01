@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ page import="test.UserDTO"%>
 <%@ page import="test.UserDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
@@ -25,4 +24,7 @@ if (userEmail == null || userPassword == null) {
 UserDAO userDAO = new UserDAO();
 String result = userDAO.login(userEmail, userPassword);
 %>
+
+<%=result %>
+
 

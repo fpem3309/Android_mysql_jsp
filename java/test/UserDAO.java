@@ -9,7 +9,7 @@ import test.DatabaseUtil;
 public class UserDAO {
 	Connection conn = DatabaseUtil.getConnection();
 	private ResultSet rs;
-	String login_return = "";
+	String login_return = "success";
 
 	public int join(String userEmail, String userPassword) {
 		String SQL = "INSERT INTO USER VALUES (?,?)";
@@ -34,7 +34,7 @@ public class UserDAO {
 			
 			if(rs.next()) {
 				if(rs.getString("userEmail").equals(userEmail) && rs.getString("userPassword").equals(userPassword)) {
-					login_return = "true";
+					login_return = "success";
 				}else {
 					login_return = "false";
 				}
