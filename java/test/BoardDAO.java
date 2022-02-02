@@ -18,7 +18,7 @@ public class BoardDAO {
 
 	public String board() {
 		List list = new ArrayList();
-		String SQL = "SELECT * FROM BOARD";
+		String SQL = "SELECT * FROM BOARD ORDER BY board_no DESC";
 		try { // 각각의 데이터를 실제로 넣어준다.
 			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
 			rs =  pstmt.executeQuery();
@@ -49,6 +49,22 @@ public class BoardDAO {
 		}
 		//정보가 없으면 null
 		return null;
+	}
+	
+	
+	
+	public int add_content(String add_content, String board_no) {
+		String SQL = "Update Board set board_content = ? WHERE board_no = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+			pstmt.setString(1, add_content);
+			pstmt.setString(2, board_no);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return -1;
 	}
 	
 }

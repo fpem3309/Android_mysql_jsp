@@ -10,4 +10,4 @@ request.setCharacterEncoding("UTF-8");
 BoardDAO boardDAO = new BoardDAO();
 String result = boardDAO.board();
 %>
-<%=result %>
+<%=result%>
