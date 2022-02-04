@@ -13,9 +13,11 @@ import test.DatabaseUtil;
 public class UserDAO {
 	Connection conn = DatabaseUtil.getConnection();
 	private ResultSet rs;
-	String login_return;
 
 	public int join(String userEmail, String userPassword) {
+		List list = new ArrayList();
+		JSONObject obj = new JSONObject();
+		
 		String SQL = "INSERT INTO USER VALUES (?,?)";
 		try { // 각각의 데이터를 실제로 넣어준다.
 			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
@@ -40,21 +42,16 @@ public class UserDAO {
 			
 			rs =  pstmt.executeQuery();
 			
-
-			
 			if(rs.next()) {
 				if(rs.getString(1).equals(userEmail) && rs.getString(2).equals(userPassword)) {
-					login_return = "success";
-					obj.put("success",true);
+					obj.put("login",true);
 					list.add(obj);
 				}else {
-					login_return = "false";
-					obj.put("success",false);
+					obj.put("login",false);
 					list.add(obj);
 				}
 			} else {
-				login_return = "NO_ID";
-				obj.put("success","NO_ID");
+				obj.put("login","NO_ID");
 				list.add(obj);
 			}
 		} catch (Exception e) {

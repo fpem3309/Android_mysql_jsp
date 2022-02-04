@@ -16,11 +16,12 @@ public class BoardDAO {
 	Connection conn = DatabaseUtil.getConnection();
 	private ResultSet rs;
 
-	public String board() {
+	public String board(String userEmail) {
 		List list = new ArrayList();
-		String SQL = "SELECT * FROM BOARD ORDER BY board_no DESC";
+		String SQL = "SELECT * FROM BOARD WHERE userEmail=? ORDER BY board_no DESC";
 		try { // 각각의 데이터를 실제로 넣어준다.
 			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+			pstmt.setString(1, userEmail);
 			rs =  pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -29,7 +30,7 @@ public class BoardDAO {
 				String board_content =rs.getString("board_content");
 				String board_date =rs.getString("board_date");
 				String board_hit =rs.getString("board_hit");
-				String userEmail =rs.getString("userEmail");
+				//String userEmail =rs.getString("userEmail");
 				
 				JSONObject obj = new JSONObject();
 				

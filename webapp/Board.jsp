@@ -7,7 +7,9 @@
 //사용자가 보낸 데이터를 한글을 사용할 수 있는 형식으로 변환
 request.setCharacterEncoding("UTF-8");
 
+String userEmail = (String) request.getParameter("userEmail");
+
 BoardDAO boardDAO = new BoardDAO();
-String result = boardDAO.board();
+String result = boardDAO.board(userEmail);
 %>
 <%=result%>

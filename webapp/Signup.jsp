@@ -7,6 +7,7 @@
 request.setCharacterEncoding("UTF-8");
 String userEmail = null;
 String userPassword = null;
+int result = 1;
 
 if (request.getParameter("userEmail") != null) {
 	userEmail = (String) request.getParameter("userEmail");
@@ -14,15 +15,12 @@ if (request.getParameter("userEmail") != null) {
 if (request.getParameter("userPassword") != null) {
 	userPassword = (String) request.getParameter("userPassword");
 }
-if (userEmail == null || userPassword == null) {
-	PrintWriter script = response.getWriter();
-	script.println("<script>");
-	script.println("alert('입력이 안 된 사항이 있습니다.')");
-	script.println("</script>");
-	script.close();
-	return;
-}
 UserDAO userDAO = new UserDAO();
-int result = userDAO.join(userEmail, userPassword);
-%>
+if(userEmail != null || userPassword != null){
 
+result = userDAO.join(userEmail, userPassword);
+
+}
+
+%>
+<%=result %>
