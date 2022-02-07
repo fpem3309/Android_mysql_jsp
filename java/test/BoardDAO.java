@@ -29,7 +29,6 @@ public class BoardDAO {
 				String board_title = rs.getString("board_title");
 				String board_content =rs.getString("board_content");
 				String board_date =rs.getString("board_date");
-				String board_hit =rs.getString("board_hit");
 				//String userEmail =rs.getString("userEmail");
 				
 				JSONObject obj = new JSONObject();
@@ -37,7 +36,6 @@ public class BoardDAO {
 				obj.put("board_no", board_no);
 				obj.put("board_title", board_title);
 				obj.put("board_content", board_content);
-				obj.put("board_hit", board_hit);
 				obj.put("board_date", board_date);
 				obj.put("userEmail", userEmail);
 				list.add(obj.toString());
@@ -62,10 +60,34 @@ public class BoardDAO {
 			pstmt.setString(2, board_no);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public String mood() {
+		List list = new ArrayList();
+		String SQL = "select userMood from board";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs =  pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String userMood = rs.getString("userMood");
+				
+				JSONObject obj = new JSONObject();
+				
+				obj.put("userMood", userMood);
+
+				list.add(obj.toString());
+			};	
+			return ""+list;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 }

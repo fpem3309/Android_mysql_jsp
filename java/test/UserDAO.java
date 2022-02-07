@@ -44,10 +44,10 @@ public class UserDAO {
 			
 			if(rs.next()) {
 				if(rs.getString(1).equals(userEmail) && rs.getString(2).equals(userPassword)) {
-					obj.put("login",true);
+					obj.put("login","true");
 					list.add(obj);
 				}else {
-					obj.put("login",false);
+					obj.put("login","false");
 					list.add(obj);
 				}
 			} else {
