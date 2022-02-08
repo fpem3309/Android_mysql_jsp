@@ -52,12 +52,14 @@ public class BoardDAO {
 	
 	
 	
-	public int add_content(String add_content, String board_no) {
-		String SQL = "Update Board set board_content = ? WHERE board_no = ?";
+	public int add_content(String add_content, String add_mood, String board_no) {
+		String SQL = "Update Board set board_content = ?, userMood=? WHERE board_no = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
 			pstmt.setString(1, add_content);
-			pstmt.setString(2, board_no);
+			pstmt.setString(2, add_mood);
+			pstmt.setString(3, board_no);
+			
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

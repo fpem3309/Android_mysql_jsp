@@ -8,6 +8,7 @@
 request.setCharacterEncoding("UTF-8");
 String add_content = request.getParameter("add_content");
 String board_no = request.getParameter("board_no");
+String add_mood = request.getParameter("add_mood");
 
 
 //if (request.getParameter("add_content") != null) {
@@ -18,6 +19,6 @@ String board_no = request.getParameter("board_no");
 //}
 
 BoardDAO boardDAO = new BoardDAO();
-int result = boardDAO.add_content(add_content, board_no);
+int result = boardDAO.add_content(add_content, add_mood, board_no);
 %>
 <%=result%>
