@@ -29,6 +29,7 @@ public class BoardDAO {
 				String board_title = rs.getString("board_title");
 				String board_content =rs.getString("board_content");
 				String board_date =rs.getString("board_date");
+				String userMood =rs.getString("userMood");
 				//String userEmail =rs.getString("userEmail");
 				
 				JSONObject obj = new JSONObject();
@@ -38,6 +39,7 @@ public class BoardDAO {
 				obj.put("board_content", board_content);
 				obj.put("board_date", board_date);
 				obj.put("userEmail", userEmail);
+				obj.put("userMood", userMood);
 				list.add(obj.toString());
 			};	
 			return ""+list;
