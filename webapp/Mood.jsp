@@ -8,6 +8,6 @@
 request.setCharacterEncoding("UTF-8");
 
 BoardDAO boardDAO = new BoardDAO();
-String result = boardDAO.mood();
+String result = boardDAO.board1();
 %>
 <%=result%>
