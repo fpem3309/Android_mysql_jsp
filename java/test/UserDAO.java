@@ -15,9 +15,6 @@ public class UserDAO {
 	private ResultSet rs;
 
 	public int join(String userEmail, String userPassword) {
-		List list = new ArrayList();
-		JSONObject obj = new JSONObject();
-		
 		String SQL = "INSERT INTO USER VALUES (?,?)";
 		try { // 각각의 데이터를 실제로 넣어준다.
 			PreparedStatement pstmt = conn.prepareStatement(SQL); // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
